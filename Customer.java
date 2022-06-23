@@ -17,23 +17,23 @@ public class Customer {
       return _name;
    }
 
-private double amountFor(Rental each) {
+private double amountFor(Rental aRental) {
       //Adicionar o trecho de código extraído.
   double rentaleach=0;
   //determine amounts for each line
-        switch (each.getMovie().getPriceCode()) {
+        switch (aRental.getMovie().getPriceCode()) {
            case Movie.REGULAR:
               rentaleach += 2;
-              if (each.getDaysRented() > 2)
-                 rentaleach += (each.getDaysRented() - 2) * 1.5;
+              if (aRental.getDaysRented() > 2)
+                 rentaleach += (aRental.getDaysRented() - 2) * 1.5;
               break;
            case Movie.NEW_RELEASE:
-              rentaleach += each.getDaysRented() * 3;
+              rentaleach += aRental.getDaysRented() * 3;
               break;
            case Movie.CHILDRENS:
               rentaleach += 1.5;
-              if (each.getDaysRented() > 3)
-                 rentaleach += (each.getDaysRented() - 3) * 1.5;
+              if (aRental.getDaysRented() > 3)
+                 rentaleach += (aRental.getDaysRented() - 3) * 1.5;
                break;
         }
     return rentaleach;
@@ -48,18 +48,18 @@ private double amountFor(Rental each) {
      String result = "Rental Record for " + getName() + "\n";
      while (rentals.hasMoreElements()) {
         double thisAmount = 0;
-        Rental each = (Rental) rentals.nextElement();
+        Rental aRental = (Rental) rentals.nextElement();
         
-      thisAmount = amountFor(each);
+      thisAmount = amountFor(aRental);
 
         // add frequent renter points
         frequentRenterPoints ++;
         // add bonus for a two day new release rental
-        if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-            each.getDaysRented() > 1) frequentRenterPoints ++;
+        if ((aRental.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
+            aRental.getDaysRented() > 1) frequentRenterPoints ++;
 
         //show figures for this rental
-        result += "\t" + each.getMovie().getTitle()+ "\t" +
+        result += "\t" + aRental.getMovie().getTitle()+ "\t" +
             String.valueOf(thisAmount) + "\n";
         totalAmount += thisAmount;
 
