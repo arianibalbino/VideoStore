@@ -18,7 +18,7 @@ public class Customer {
    }
 
 private double amountFor(Rental aRental) {
-      //Adicionar o trecho de código extraído.
+  //Adicionar o trecho de código extraído.
   double rentaleach=0;
   //determine amounts for each line
         switch (aRental.getMovie().getPriceCode()) {
