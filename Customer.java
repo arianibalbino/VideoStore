@@ -17,28 +17,27 @@ public class Customer {
       return _name; 
    }
 
-private double amountFor(Rental each) {
-      //Adicionar o trecho de código extraído.
-  double rentaleach=0;
-  //determine amounts for each line
+ private double amountFor(Rental each) {
+        double thisAmount = 0;
+        // determine amounts for each line
         switch (each.getMovie().getPriceCode()) {
-           case Movie.REGULAR:
-              rentaleach += 2;
-              if (each.getDaysRented() > 2)
-                 rentaleach += (each.getDaysRented() - 2) * 1.5;
-              break;
-           case Movie.NEW_RELEASE:
-              rentaleach += each.getDaysRented() * 3;
-              break;
-           case Movie.CHILDRENS:
-              rentaleach += 1.5;
-              if (each.getDaysRented() > 3)
-                 rentaleach += (each.getDaysRented() - 3) * 1.5;
-               break;
+            case Movie.REGULAR:
+                thisAmount += 2;
+                if (each.getDaysRented() > 2)
+                    thisAmount += (each.getDaysRented() - 2) * 1.5;
+                break;
+            case Movie.NEW_RELEASE:
+                thisAmount += each.getDaysRented() * 3;
+                break;
+            case Movie.CHILDRENS:
+                thisAmount += 1.5;
+                if (each.getDaysRented() > 3)
+                    thisAmount += (each.getDaysRented() - 3) * 1.5;
+                break;
         }
-  return rentaleach;
-  }
 
+        return thisAmount;
+    }
   
   public String statement() {
      double totalAmount = 0;
@@ -47,10 +46,10 @@ private double amountFor(Rental each) {
      
      String result = "Rental Record for " + getName() + "\n";
      while (rentals.hasMoreElements()) {
-        double thisAmount = 0;
+       
         Rental each = (Rental) rentals.nextElement();
         
-      thisAmount = amountFor(each);
+      
 
         // add frequent renter points
         frequentRenterPoints ++;
@@ -61,7 +60,8 @@ private double amountFor(Rental each) {
         //show figures for this rental
         result += "\t" + each.getMovie().getTitle()+ "\t" +
             String.valueOf(thisAmount) + "\n";
-        totalAmount += thisAmount;
+            double thisAmount = amountFor(each);
+            totalAmount += thisAmount;
 
      }
      //add footer lines
