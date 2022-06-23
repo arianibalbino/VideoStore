@@ -36,7 +36,7 @@ private double amountFor(Rental each) {
                  rentaleach += (each.getDaysRented() - 3) * 1.5;
                break;
         }
-  return rentaleach;
+    return rentaleach;
   }
 
   
